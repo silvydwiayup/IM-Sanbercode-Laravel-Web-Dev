@@ -26,15 +26,32 @@
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
-              <span class="hide-menu">FORM</span>
+              <span class="hide-menu">Menu</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/register" aria-expanded="false">
+              <a class="sidebar-link" href="/categories" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
                 </span>
-                <span class="hide-menu">Form Input</span>
+                <span class="hide-menu">Categories</span>
               </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:login-3-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/transaction" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:login-3-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Transaction</span>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- End Sidebar navigation -->

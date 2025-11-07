@@ -8,9 +8,9 @@ class Welcome extends Controller
 {
     public function welcome(Request $request)
     {
-        $firstName = session('fname');
-        $lastName = session('lname');
+        $name = session('name');
+        $email = session('email');
 
-        return view('/welcome', ['firstname' => $firstName, 'lastname' => $lastName]);
+        return view('/welcome', ['name' => $name, 'email' => $email]);
     }
 }

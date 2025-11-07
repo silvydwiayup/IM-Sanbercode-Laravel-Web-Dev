@@ -1,47 +1,104 @@
-@extends('home')
-@section('bodyContent')
-    
-<h1>Buat Account Baru!</h1>
-<h3>Sign Up Form</h3>
+<!doctype html>
+<html lang="en">
 
-<form action="" method="post">
-    @csrf
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SeoDash Free Bootstrap Admin Template by Adminmart</title>
+  <link rel="shortcut icon" type="image/png" href="{{ asset("templating/src/assets/images/logos/seodashlogo.png") }}" />
+  <link rel="stylesheet" href="{{ asset("templating/src/assets/css/styles.min.css") }}" />
+</head>
 
-    <!-- <input type="submit" value="kirim"> -->
-    <label for="first_name">First name :</label><br><br>
-    <input type="text" name="firstname" id="first_name"><br><br>
-    <label for="last_name">Last name :</label><br><br>
-    <input type="text" name="lastname" id="last_name">
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3 ">
+            <div class="card mb-0 row justify-content-center w-90">
+              <div class="card-body">
+                {{-- <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="{{ asset("templating/src/assets/images/logos/logo-light.svg") }}" alt="">
+                </a> --}}
+                <p class="text-center fs-6  fw-bold text-black-50" >Register</p>
+                <form action="/register" method="POST">
+                    @csrf
 
-    <p>Gender :</p>
-        <input type="radio" name="gender" id="male" value="Male">
-        <label for="male">Male</label><br>
-        <input type="radio" name="gender" id="female" value="Female">
-        <label for="Female">Female</label><br>
-        <input type="radio" name="gender" id="other" value="Other">
-        <label for="other">Other</label>
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill"></i> Terjadi Kesalahan!</h5>
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    
+                  <div class="mb-3">
+                    <label for="exampleInputtext1" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" aria-describedby="textHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">Konfirmasi Password</label>
+                    <input type="password" class="form-control" name="password_confirmation">
+                    <small id="passwordMatch" class="text-danger" style="display:none;">Password dan konfirmasi password tidak sesuai</small>
+                  </div>
+                  <input type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4" value="Sign Up">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
+                    <a class="text-primary fw-bold ms-2" href="">Sign In</a>
+                  </div>
+                </form>
 
-    <br>
+                <script>
+                    const form = document.getElementById('registerForm');
+                    const password = document.getElementById('password');
+                    const confirmPassword = document.getElementById('password_confirmation');
+                    const passwordMatchMsg = document.getElementById('passwordMatch');
 
-    <p>Nationality</p>
-    <select name="nationality" id="nationality">
-        <option value="Indonesia">Indonesia</option>
-    </select>
+                    function checkPasswordMatch() {
+                        if (password.value !== confirmPassword.value) {
+                            passwordMatchMsg.style.display = 'inline';
+                            return false;
+                        } else {
+                            passwordMatchMsg.style.display = 'none';
+                            return true;
+                        }
+                    }
 
+                    password.addEventListener('keyup', checkPasswordMatch);
+                    confirmPassword.addEventListener('keyup', checkPasswordMatch);
 
-    <p>Language Spoken :</p>
-        <input type="checkbox" name="language" id="indonesia" value="Indonesia">
-        <label for="indonesia">Bahasa Indonesia</label><br>
-        <input type="checkbox" name="language" id="english" value="English">
-        <label for="english">English</label><br>
-        <input type="checkbox" name="language" id="other" value="Other">
-        <label for="other">Other</label>
+                    form.addEventListener('submit', function(e) {
+                        if (!checkPasswordMatch()) {
+                            e.preventDefault(); 
+                        }
+                    });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{{ asset("templating/src/assets/libs/jquery/dist/jquery.min.js") }}"></script>
+  <script src="{{ asset("templating/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+  <script src="{{ asset("https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js") }}"></script>
+  
+</body>
 
-    <p>Bio :</p>
-    <textarea name="message" rows="10" cols="30"></textarea>
-    <br>
-    <button type="submit">Sign Up</button>
-
-</form>
-@endsection
-    
+</html>
