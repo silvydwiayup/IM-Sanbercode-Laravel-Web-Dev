@@ -20,7 +20,8 @@ return new class extends Migration
             $table->integer('stock');
             $table->unsignedBigInteger('categories_id');
             $table->foreign('categories_id')->references('id')->on('categories')->onDelete("cascade")->onUpdate("cascade");
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->enum('type', ['in', 'out']);
             $table->integer('amount');
             $table->text('notes')->nullable();
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

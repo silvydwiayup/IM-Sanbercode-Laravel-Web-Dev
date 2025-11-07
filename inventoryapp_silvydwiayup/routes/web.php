@@ -36,11 +36,19 @@ Route::delete('/categories/{id}', [CategoriesController::class, 'destroy']);
 
 // Products
 
-Route::get('/products', [ProductController::class, 'product']);
+Route::get('/products', [ProductController::class, 'index']);
 
 Route::get('/products/create', [ProductController::class, 'create']);
 
-Route::get('/products/show', [ProductController::class, 'show']);
+Route::get('/products/show/{id}', [ProductController::class, 'show']);
+Route::post('/products', [ProductController::class, 'store']);
+
+Route::get('/products/{id}/edit', [ProductController::class, 'edit']);
+Route::put('/products/edit/{id}', [ProductController::class, 'update']);
+
+Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+
+
 
 // Transaction
 

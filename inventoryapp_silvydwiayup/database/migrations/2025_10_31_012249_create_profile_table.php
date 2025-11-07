@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreign('users_id')->references('id')->on('users')->onDelete("cascade")->onUpdate("cascade");
             $table->integer('age');
             $table->text('bio');
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

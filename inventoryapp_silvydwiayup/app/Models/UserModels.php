@@ -10,8 +10,6 @@ class UserModels extends Model
     protected $table = 'users';
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
-
     protected $fillable = [
         'name',
         'email',

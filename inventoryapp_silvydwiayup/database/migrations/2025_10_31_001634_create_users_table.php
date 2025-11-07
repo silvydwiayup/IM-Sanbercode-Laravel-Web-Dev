@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->enum('role', ["staff", "admin"])->default('staff');
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
