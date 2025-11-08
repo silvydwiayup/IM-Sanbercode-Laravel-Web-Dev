@@ -28,16 +28,27 @@ class Register extends Controller
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
 
-        UserModels::create([
+        $user = UserModels::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
-            'role' => 'staff',
+            'role' => $this->roleCheck()
         ]);
 
         return redirect('/welcome')->with([
             'name' => $validatedData['name'],
             'email' => $validatedData['email']
         ]);
+    }
+
+    private function roleCheck()
+    {
+        $tbUser = UserModels::all();
+
+        if ($tbUser == null) {
+            return 'admin';
+        }else {
+            return 'staff';
+        }
     }
 }

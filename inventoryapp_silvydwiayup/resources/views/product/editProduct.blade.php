@@ -49,7 +49,7 @@
 
             <div class="mb-3">
                 <label for="inputStock" class="form-label">Stock</label>
-                <input type="text" class="form-control" name="inputStock" id="inputStock" value="{{ old('stock', $editProduct->stock) }}">
+                <input type="text" class="form-control" name="inputStock" id="inputStock" value="{{ old('stock', $editProduct->stock) }}" required>
             </div>
 
             <div class="mb-3">

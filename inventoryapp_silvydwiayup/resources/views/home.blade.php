@@ -8,6 +8,7 @@
   <link rel="shortcut icon" type="image/png" href="{{ asset("templating/src/assets/images/logos/seodashlogo.png") }}" />
   <link rel="stylesheet" href="{{ asset("templating/src/node_modules/simplebar/dist/simplebar.min.css") }}">
   <link rel="stylesheet" href="{{ asset("templating/src/assets/css/styles.min.css") }}" />
+
 </head>
 
 <body>

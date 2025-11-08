@@ -43,4 +43,11 @@ class CategoriesModels extends Model
     {
         return $this->belongsTo(CategoriesModels::class, 'categories_id', 'id');
     }
+
+    public function produk()
+    {
+        return $this->hasMany(ProductModels::class, 'categories_id');
+    }
+
+
 }

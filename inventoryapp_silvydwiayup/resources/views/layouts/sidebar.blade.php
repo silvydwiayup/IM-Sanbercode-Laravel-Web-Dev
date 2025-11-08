@@ -3,7 +3,8 @@
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="/" class="text-nowrap logo-img">
-            <img src="{{ asset("templating/src/assets/images/logos/logo-light.svg") }}" alt="" />
+            {{-- <img src="{{ asset("templating/src/assets/images/logos/logo-light.svg") }}" alt="" /> --}}
+            <h4>{{ Auth::user()->name }}</h4>
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -28,6 +29,7 @@
               <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
               <span class="hide-menu">Menu</span>
             </li>
+            @if (Auth::check() && Auth::user()->role == 'admin')
             <li class="sidebar-item">
               <a class="sidebar-link" href="/categories" aria-expanded="false">
                 <span>
@@ -36,6 +38,7 @@
                 <span class="hide-menu">Categories</span>
               </a>
             </li>
+            @endif
             <li class="sidebar-item">
               <a class="sidebar-link" href="/products" aria-expanded="false">
                 <span>

@@ -8,7 +8,10 @@
     </div>
 @endif
 
+@if (Auth::check() && Auth::user()->role === 'admin')
 <a href="/products/create" class="btn btn-primary flex-fill mx-1 mb-3">Tambah</a>
+@endif
+
 
 <div class="container-fluid">
   <div class="row g-3">
@@ -53,16 +56,46 @@
               <div class="d-flex justify-content-center mb-3">
                 <a href="/products/show/{{ $item->id }}" class="btn btn-primary w-100">Read More</a>
               </div>
-
+              
+              @if (Auth::check() && Auth::user()->role === 'admin')
               <div class="d-flex justify-content-between" style="gap:0.5rem;">
                 <a href="/products/{{ $item->id }}/edit" class="btn btn-warning w-50">Edit</a>
-                <form action="/products/delete/{{ $item->id }}" method="POST" class="w-50">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-danger w-100">Delete</button>
-                </form>
+                <button type="button" class="btn btn-danger w-50" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}">
+                  Delete
+                </button>
+
+              </div>
+              @endif
+            </div>
+
+
+            <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $item->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content border-0 shadow" style="border-radius: 15px;">
+
+                <div class="modal-header border-0">
+                  <h5 class="modal-title fw-bold text-danger" id="deleteModalLabel{{ $item->id }}">Konfirmasi Hapus</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                  <p class="text-muted mb-2">Apakah kamu yakin ingin menghapus produk:</p>
+                  <h6 class="fw-bold text-dark">{{ $item->name }}</h6>
+                </div>
+
+                <div class="modal-footer border-0 d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Batal</button>
+                  <form action="/products/delete/{{ $item->id }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger px-4">Ya, Hapus</button>
+                  </form>
+                </div>
+
               </div>
             </div>
+          </div>
+
 
           </div>
         </div>

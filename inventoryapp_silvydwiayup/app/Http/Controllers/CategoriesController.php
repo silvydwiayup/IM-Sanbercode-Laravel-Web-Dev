@@ -8,6 +8,8 @@ use App\Models\CategoriesModels;
 
 class CategoriesController extends Controller
 {
+
+
     public function create()
     {
         return view('categories.tambah');
@@ -40,8 +42,7 @@ class CategoriesController extends Controller
 
     public function show($id)
     {
-        $category = CategoriesModels::findorFail($id);
-
+        $category = CategoriesModels::with('produk')->findOrFail($id);
         return view('categories.detail', ['detailCategory' => $category]);
     }
 

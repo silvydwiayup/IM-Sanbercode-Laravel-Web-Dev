@@ -2,24 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-use Illuminate\Support\Str;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
-
-class UserModels extends Authenticatable
+class ProfileModels extends Model
 {
-    use Notifiable;
-
-    protected $table = 'users';
+    use HasFactory; 
+    
+    protected $table = 'profile';
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
+        'users_id',
+        'age',
+        'bio',
         'created_at',
         'updated_at',
     ];
@@ -44,8 +40,8 @@ class UserModels extends Authenticatable
         });
     }
 
-    public function profile()
+    public function users()
     {
-        return $this->hasOne(ProfileModels::class, 'users_id');
+        return $this->belongsTo(UserModels::class, 'users_id', 'id');
     }
 }

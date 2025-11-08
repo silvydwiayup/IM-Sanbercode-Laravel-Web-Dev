@@ -2,7 +2,12 @@
 @section('header', "Transaction")
 @section('bodyContent')
 
-@if (session()->has('success'))
+
+
+<form action="/transaction">
+
+  
+  @if (session()->has('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
@@ -21,29 +26,29 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Product</th>
+              <th scope="col">User</th>
               <th scope="col">Type</th>
               <th scope="col">Amount</th>
             </tr>
           </thead>
           <tbody class="text-center">
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+            @foreach ($transactionList as $item)
+                <tr>
+                <th scope="row">{{ $item->users_id }}</th>
+                <td>{{ $item->users->name }}</td>
+                <td>{{ $item->products->name }}</td>
+                <td>
+                  <span 
+                    class="badge 
+                    {{ $item->type === 'in' ? 'bg-primary' : ($item->type === 'out' ? 'bg-danger' : 'bg-secondary') }}"
+                  >
+                    {{ ucfirst($item->type) }}
+                  </span>
+                </td>
+                <td>{{ $item->amount }}</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>John</td>
-              <td>Doe</td>
-              <td>@social</td>
-            </tr>
+            @endforeach
+
           </tbody>
         </table>
       </div>
@@ -51,5 +56,8 @@
     </div>
   </div>
 </div>
+
+</form>
+
 
 @endsection
